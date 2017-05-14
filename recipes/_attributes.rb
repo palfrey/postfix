@@ -58,8 +58,8 @@ if node['postfix']['use_virtual_aliases_domains']
   node.default_unless['postfix']['main']['virtual_alias_domains'] = ["#{node['postfix']['virtual_alias_domains_db_type']}:#{node['postfix']['virtual_alias_domains_db']}"]
 end
 
-if node['postfix']['use_relay_restirictions_maps']
-  default['postfix']['main']['smtpd_relay_restrictions'] = "hash:#{node['postfix']['relay_restrictions_db']}, reject"
+if node['postfix']['use_relay_restrictions_maps']
+  node.default_unless['postfix']['main']['smtpd_relay_restrictions'] = "hash:#{node['postfix']['relay_restrictions_db']}, reject"
 end
 
 if node['postfix']['master']['maildrop']['active']
